@@ -14,8 +14,8 @@
 
 
 ### Teste
-1. O endpoint `http://localhost:8080/customers` retorna uma lista de clientes.
-2. Implemente na classe `CustomerController` as APIs para criação, editação e exclusão de clientes.
+1. O endpoint `http://localhost:8080/customers` retorna uma lista de clientes. [x]
+2. Implemente na classe `CustomerController` as APIs para criação, editação e exclusão de clientes. [x]
 3. Os dados de cadastro e edição devem ser validados.
 4. A listagem de clientes deverá ser paginada.
 5. Um cliente poderá ter múltiplos endereços.
