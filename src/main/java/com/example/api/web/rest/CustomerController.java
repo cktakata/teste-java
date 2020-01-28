@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -56,6 +57,16 @@ public class CustomerController {
 	public List<Customer> findAll() {
 		return service.findAll();
 	}
+	public ResponseEntity<List<Customer>> getAllCustomers(
+            @RequestParam(defaultValue = "0") Integer pageNo, 
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(defaultValue = "id") String sortBy) 
+	{
+	List<Customer> list = service.getAllCustomers(pageNo, pageSize, sortBy);
+	
+	return new ResponseEntity<List<Customer>>(list, new HttpHeaders(), HttpStatus.OK); 
+	}
+	
 
 	@GetMapping("/{id}")
 	public Customer findById(@PathVariable Long id) {

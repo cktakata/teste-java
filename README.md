@@ -17,7 +17,7 @@
 - [x] O endpoint `http://localhost:8080/customers` retorna uma lista de clientes.
 - [x] Implemente na classe `CustomerController` as APIs para criação, editação e exclusão de clientes.
 - [ ] Os dados de cadastro e edição devem ser validados.
-- [ ] A listagem de clientes deverá ser paginada.
+- [x] A listagem de clientes deverá ser paginada.
 - [ ] Um cliente poderá ter múltiplos endereços.
 - [ ] No cadastro do endereço permita inserir apenas o CEP carregando os dados via consumo do serviço: https://viacep.com.br/
 
