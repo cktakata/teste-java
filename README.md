@@ -18,6 +18,7 @@
 - [x] Implemente na classe `CustomerController` as APIs para criação, editação e exclusão de clientes.
 - [ ] Os dados de cadastro e edição devem ser validados.
 - [x] A listagem de clientes deverá ser paginada.
+``` http://localhost:8080/customers?pageSize=3&pageNo=0&sortBy=name ```
 - [ ] Um cliente poderá ter múltiplos endereços.
 - [ ] No cadastro do endereço permita inserir apenas o CEP carregando os dados via consumo do serviço: https://viacep.com.br/
 

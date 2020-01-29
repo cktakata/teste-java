@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.api.domain.Customer;
 import com.example.api.repository.CustomerRepository;
+import com.example.api.repository.AddressRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -18,6 +19,7 @@ import org.springframework.data.domain.PageRequest;
 public class CustomerService {
 
 	private CustomerRepository repository;
+	private AddressRepository addressRepository;
 
 	@Autowired
 	public CustomerService(CustomerRepository repository) {

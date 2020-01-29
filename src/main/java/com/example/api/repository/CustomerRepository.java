@@ -12,6 +12,5 @@ public interface CustomerRepository extends PagingAndSortingRepository <Customer
 
 	List<Customer> findAllByOrderByNameAsc();
 	List<Customer> findByEmail(String email);
-//	List<Customer> findAll(Pageable pageable);
+	
 }
-//extends PagingAndSortingRepository<Customer, Long>

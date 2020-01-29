@@ -53,10 +53,12 @@ public class CustomerController {
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}	
 	
+//	@GetMapping
+//	public List<Customer> findAll() {
+//		return service.findAll();
+//	}
+	
 	@GetMapping
-	public List<Customer> findAll() {
-		return service.findAll();
-	}
 	public ResponseEntity<List<Customer>> getAllCustomers(
             @RequestParam(defaultValue = "0") Integer pageNo, 
             @RequestParam(defaultValue = "10") Integer pageSize,
