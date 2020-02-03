@@ -1,6 +1,7 @@
 package com.example.api.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.ArrayList;
 
@@ -26,12 +27,16 @@ public class CustomerService {
 		this.repository = repository;
 	}
 
-	public synchronized boolean addCustomer(Customer customer){
+	public synchronized boolean addCustomer(Customer customer, List<Address> addressList){
 	        List<Customer> list = repository.findByEmail(customer.getEmail()); 	
                 if (list.size() > 0) {
     	           return false;
                 } else {
     	        repository.save(customer);
+    	        for (Address address: addressList) {
+    	        	address.setCustomer(customer);
+    	        	addressRepository.save(address);
+    	        }
     	        return true;
        }
 	}

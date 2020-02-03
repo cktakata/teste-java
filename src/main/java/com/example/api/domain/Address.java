@@ -19,6 +19,40 @@ public class Address {
 	@NotEmpty
 	private String cep;
 
+	@Column
+	@NotEmpty
+	private String logradouro;
+	
+	@Column
+	@NotEmpty
+	private String complemento;
+	
+	@Column
+	@NotEmpty
+	private String bairro;
+	
+	@Column
+	@NotEmpty
+	private String localidade;
+	
+	@Column
+	@NotEmpty
+	private String uf;
+    	
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Customer customer;
+    
+	public Long getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -35,4 +69,36 @@ public class Address {
 		this.cep = cep;
 	}
 
+	public String getLogradouro() {
+		return logradouro;
+	}
+
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+	
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+	
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+	
+	public String getCep() {
+		return localidade;
+	}
+
+	public void setLocalidade(String localidade) {
+		this.localidade = localidade;
+	}
+	
 }
