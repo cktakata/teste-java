@@ -33,8 +33,10 @@ public class CustomerController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Void> addCustomer(@RequestBody Customer customer, UriComponentsBuilder builder) {
-        boolean flag = service.addCustomer(customer);
+	public ResponseEntity<Void> addCustomer(@RequestBody ObjectNode objectNode, UriComponentsBuilder builder) {
+		Customer customer = objectNode.get("customer");
+		List<Address> addressList = objectNode.get("address");
+        boolean flag = service.addCustomer(customer, addressList);
         if (flag == false) {
         	return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
