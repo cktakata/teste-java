@@ -1,6 +1,8 @@
 package com.example.api.web.rest;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,8 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import com.example.api.domain.Customer;
+import com.example.api.domain.Address;
 import com.example.api.service.CustomerService;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("/customers")
@@ -33,9 +40,15 @@ public class CustomerController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Void> addCustomer(@RequestBody ObjectNode objectNode, UriComponentsBuilder builder) {
-		Customer customer = objectNode.get("customer");
-		List<Address> addressList = objectNode.get("address");
+	public ResponseEntity<Void> addCustomer(@RequestBody Map<String, Object>map, UriComponentsBuilder builder) {
+		ObjectMapper mapper = new ObjectMapper(); 
+		Customer customer = mapper.convertValue(map.get("customer"), Customer.class);
+		Map<String, Object> addresses = mapper.convertValue(map.get("addressList"), Map.class);
+		List<Address> addressList = new ArrayList<Address>();
+		for (Map.Entry<String, Object> entry : addresses.entrySet()) {
+			Address address = mapper.convertValue(entry, Address.class);
+			addressList.add(address);
+		}
         boolean flag = service.addCustomer(customer, addressList);
         if (flag == false) {
         	return new ResponseEntity<Void>(HttpStatus.CONFLICT);
