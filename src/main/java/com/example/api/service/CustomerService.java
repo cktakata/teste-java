@@ -15,14 +15,20 @@ import com.example.api.repository.AddressRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.data.domain.PageRequest;
+
+import com.example.api.utils.RestServer;
 
 @Service
 public class CustomerService {
 
 	private CustomerRepository repository;
 	private AddressRepository addressRepository;
-
+	private RestServer restServer;
+	
 	@Autowired
 	public CustomerService(CustomerRepository repository) {
 		this.repository = repository;
@@ -35,8 +41,12 @@ public class CustomerService {
                 } else {
     	        repository.save(customer);
     	        for (Address address: addressList) {
-    	        	address.setCustomer(customer);
-    	        	addressRepository.save(address);
+    				ResponseEntity mapResponse = restServer.getMap("https://viacep.com.br/ws/"+address.getCep()+"/json/unicode/", "GET", null, null);
+    				HttpStatus status = mapResponse.getStatusCode();
+    				if(status.equals(HttpStatus.OK)) {
+        	        	address.setCustomer(customer);
+        	        	addressRepository.save(address);
+    				}
     	        }
     	        return true;
        }
