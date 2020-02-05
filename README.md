@@ -20,12 +20,12 @@
 - [x] A listagem de clientes deverá ser paginada.
 ``` http://localhost:8080/customers?pageSize=3&pageNo=0&sortBy=name ```
 - [x] Um cliente poderá ter múltiplos endereços.
-- [ ] No cadastro do endereço permita inserir apenas o CEP carregando os dados via consumo do serviço: https://viacep.com.br/
+- [x] No cadastro do endereço permita inserir apenas o CEP carregando os dados via consumo do serviço: https://viacep.com.br/
 
 
 ### Diferenciais
-1. Tratamento de exceções
-2. Testes unitários
-3. Validações
-4. Frontend (UI)
-5. Documentação
+1. Tratamento de exceções (OK)
+2. Testes unitários (NOK)
+3. Validações (OK)
+4. Frontend (UI) (50%)
+5. Documentação (NOK)
